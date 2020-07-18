@@ -1,12 +1,12 @@
-package org.jetbrains.plugins.template.listeners
+package com.rspn.listeners
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import org.jetbrains.plugins.template.services.MyProjectService
+import com.rspn.services.ProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 
     override fun projectOpened(project: Project) {
-        project.getService(MyProjectService::class.java)
+        project.getService(ProjectService::class.java)
     }
 }
