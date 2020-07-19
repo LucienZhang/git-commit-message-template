@@ -12,7 +12,7 @@ class SetCommitTemplateAction : DumbAwareAction() {
     }
 
     companion object {
-        const val issueIdSeparator = ":" //TODO set as configurable
+        const val issueIdSeparator = ":" // TODO set as configurable
     }
 
     override fun actionPerformed(e: AnActionEvent) {
