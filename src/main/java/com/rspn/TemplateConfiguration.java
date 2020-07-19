@@ -1,4 +1,4 @@
-package com.rspn.action;
+package com.rspn;
 
 import javax.swing.*;
 
@@ -11,4 +11,7 @@ public class TemplateConfiguration {
     private JTextField DEV1234FixBugsTextField;
     private JTextField DEV1234TextField;
     private JTextField DEV1234TextField1;
+    private JPanel rootPanel;
+
+    public JPanel getRootPanel = rootPanel;
 }

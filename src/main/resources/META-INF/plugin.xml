@@ -12,6 +12,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.rspn.services.ApplicationService"/>
         <projectService serviceImplementation="com.rspn.services.ProjectService"/>
+        <applicationConfigurable instance="com.rspn.settings.VCSCommitMessageTemplateSettings"/>
     </extensions>
 
     <projectListeners>
