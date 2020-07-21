@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.rspn.SettingsForm">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="7" column-count="43" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="1370" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="6608" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="43" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Regex to extract ticket from branch"/>
+          <toolTipText value="Regex applied to your branch"/>
+          <verifyInputWhenFocusTarget value="false"/>
+        </properties>
+      </component>
+      <vspacer id="5556a">
+        <constraints>
+          <grid row="6" column="35" row-span="1" col-span="8" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="be194" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Suffix"/>
+          <toolTipText value="Appended after the Regex"/>
+        </properties>
+      </component>
+      <component id="1a92d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="33" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <text value="Preview"/>
+        </properties>
+      </component>
+      <component id="dab3a" class="javax.swing.JTextField" binding="issueSuffixTextField">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value=": "/>
+        </properties>
+      </component>
+      <component id="4cd89" class="javax.swing.JTextField" binding="branchNameTextFieldPreview">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="DEV-1234-fix-bug"/>
+        </properties>
+      </component>
+      <component id="c2858" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Branch Name"/>
+          <toolTipText value="What branch name typically looks like"/>
+        </properties>
+      </component>
+      <component id="71745" class="javax.swing.JRadioButton" binding="prefixTicketAndDescriptionRadioButton">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="(?&lt;=/)[A-Z0-9]+-[0-9]"/>
+        </properties>
+      </component>
+      <component id="7da04" class="javax.swing.JRadioButton" binding="customRadioButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Custom"/>
+        </properties>
+      </component>
+      <component id="56aca" class="javax.swing.JTextField" binding="resultingCommitMessageTemplatePreview">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <text value="DEV-1234: Sample commit message description"/>
+        </properties>
+      </component>
+      <component id="79eb" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Commit Message Template"/>
+        </properties>
+      </component>
+      <component id="663e4" class="javax.swing.JTextField" binding="customRegexTextField">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+        </properties>
+      </component>
+      <component id="5f640" class="javax.swing.JButton" binding="runPreviewButton">
+        <constraints>
+          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <icon value="actions/run_anything.png"/>
+          <text value="Run Preview"/>
+          <toolTipText value="Runs regex to extract ticket from branch name and append the suffix"/>
+        </properties>
+      </component>
+      <component id="1e6f5" class="javax.swing.JRadioButton" binding="ticketAndDescriptionRadioButton">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="[A-Z0-9]+-[0-9]+"/>
+        </properties>
+      </component>
+      <component id="450a3" class="javax.swing.JLabel" binding="errorLabel">
+        <constraints>
+          <grid row="1" column="5" row-span="1" col-span="11" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-4507346"/>
+          <text value=""/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="regexButtonGroup">
+      <member id="1e6f5"/>
+      <member id="71745"/>
+      <member id="7da04"/>
+    </group>
+  </buttonGroups>
+</form>
