@@ -10,7 +10,6 @@ public class SettingsForm {
     private JTextField issueSuffixTextField;
     private JTextField branchNameTextFieldPreview;
     private JTextField resultingCommitMessageTemplatePreview;
-    private ButtonGroup regexButtonGroup;
     private JPanel rootPanel;
 
     private JButton runPreviewButton;
@@ -53,10 +52,6 @@ public class SettingsForm {
 
     public JTextField getResultingCommitMessageTemplatePreview() {
         return resultingCommitMessageTemplatePreview;
-    }
-
-    public ButtonGroup getRegexButtonGroup() {
-        return regexButtonGroup;
     }
 
     public JPanel getRootPanel() {

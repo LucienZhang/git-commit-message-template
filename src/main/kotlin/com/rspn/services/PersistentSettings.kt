@@ -8,19 +8,18 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 import com.rspn.Bundle
 
 @State(name = "VCSCommitMessageTemplate", storages = [Storage("vcs-commit-message-template.xml")])
-class ApplicationService : PersistentStateComponent<ApplicationService> {
-
-    init {
-        println(Bundle.message("applicationService"))
-    }
+class PersistentSettings(var selectedRadioButtonIndex: Int = 0,
+                         var suffix: String = Bundle.getMessage("suffix"),
+                         var customRegex: String = Bundle.getMessage("customRegex"),
+                         var branchName: String = Bundle.getMessage("branchName")) : PersistentStateComponent<PersistentSettings> {
 
     override fun getState() = this
 
-    override fun loadState(state: ApplicationService) {
+    override fun loadState(state: PersistentSettings) {
         XmlSerializerUtil.copyBean(state, this)
     }
 
     companion object {
-        fun getInstance() = ServiceManager.getService(ApplicationService::class.java)!!
+        fun getInstance() = ServiceManager.getService(PersistentSettings::class.java)!!
     }
 }

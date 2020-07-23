@@ -10,7 +10,7 @@
     <depends>hg4idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.rspn.services.ApplicationService"/>
+        <applicationService serviceImplementation="com.rspn.services.PersistentSettings"/>
         <projectService serviceImplementation="com.rspn.services.ProjectService"/>
         <applicationConfigurable instance="com.rspn.settings.VCSCommitMessageTemplateSettings"/>
     </extensions>

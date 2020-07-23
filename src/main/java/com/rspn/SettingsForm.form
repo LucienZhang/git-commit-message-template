@@ -48,7 +48,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value=": "/>
+          <text resource-bundle="messages/Bundle" key="suffix"/>
         </properties>
       </component>
       <component id="4cd89" class="javax.swing.JTextField" binding="branchNameTextFieldPreview">
@@ -58,7 +58,8 @@
           </grid>
         </constraints>
         <properties>
-          <text value="DEV-1234-fix-bug"/>
+          <editable value="false"/>
+          <text resource-bundle="messages/Bundle" key="branchName"/>
         </properties>
       </component>
       <component id="c2858" class="javax.swing.JLabel">
@@ -67,7 +68,7 @@
         </constraints>
         <properties>
           <text value="Branch Name"/>
-          <toolTipText value="What branch name typically looks like"/>
+          <toolTipText value="What your branch name typically looks like"/>
         </properties>
       </component>
       <component id="71745" class="javax.swing.JRadioButton" binding="prefixTicketAndDescriptionRadioButton">
@@ -131,7 +132,7 @@
         </constraints>
         <properties>
           <selected value="true"/>
-          <text value="[A-Z0-9]+-[0-9]+"/>
+          <text resource-bundle="messages/Bundle" key="defaultRegex"/>
         </properties>
       </component>
       <component id="450a3" class="javax.swing.JLabel" binding="errorLabel">
