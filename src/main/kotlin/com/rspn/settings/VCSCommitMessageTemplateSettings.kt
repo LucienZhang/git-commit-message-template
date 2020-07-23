@@ -37,7 +37,9 @@ class VCSCommitMessageTemplateSettings : SearchableConfigurable {
     private fun addRunPreviewButtonAction() {
         settingsForm.runPreviewButton.addActionListener {
             val selectedRegexButton =
-                    setOf(settingsForm.customRadioButton, settingsForm.ticketAndDescriptionRadioButton, settingsForm.prefixTicketAndDescriptionRadioButton)
+                    setOf(settingsForm.customRadioButton,
+                            settingsForm.ticketAndDescriptionRadioButton,
+                            settingsForm.prefixTicketAndDescriptionRadioButton)
                             .first { it.isSelected }
             var customRegex: String? = null
             if (selectedRegexButton.actionCommand == "Custom") {
@@ -46,9 +48,11 @@ class VCSCommitMessageTemplateSettings : SearchableConfigurable {
             val suffix = settingsForm.issueSuffixTextField.text
             val sampleBranchName = settingsForm.branchNameTextFieldPreview.text
             try {
-                val matchResult = Regex(customRegex ?: selectedRegexButton.actionCommand).find(sampleBranchName)
+                val matchResult = Regex(customRegex ?: selectedRegexButton.actionCommand)
+                        .find(sampleBranchName)
                 val matchedRegexValue = matchResult?.value
-                settingsForm.resultingCommitMessageTemplatePreview.text = "$matchedRegexValue$suffix$sampleCommitMessage"
+                settingsForm.resultingCommitMessageTemplatePreview.text =
+                        "$matchedRegexValue$suffix$sampleCommitMessage"
             } catch (e: PatternSyntaxException) {
                 settingsForm.errorLabel.text = e.message
             }
