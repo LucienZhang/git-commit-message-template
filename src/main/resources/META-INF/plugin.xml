@@ -26,8 +26,7 @@
         <action id="vcs-commit-message-template.SetCommitMessageAction" class="com.rspn.vcs.action.SetCommitTemplateAction"
                 text="Set Commit Message from Branch"
                 description="Commit message"
-                keymap="$default"
-                icon="AllIcons.Vcs.Branch">
+                keymap="$default">
             <add-to-group group-id="Vcs.MessageActionGroup" anchor="last"/>
             <keyboard-shortcut first-keystroke="ctrl k" keymap="$default"/>
         </action>
