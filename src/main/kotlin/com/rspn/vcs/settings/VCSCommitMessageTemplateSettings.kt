@@ -1,8 +1,8 @@
-package com.rspn.settings
+package com.rspn.vcs.settings
 
 import com.intellij.openapi.options.SearchableConfigurable
-import com.rspn.SettingsForm
-import com.rspn.services.PersistentSettings
+import com.rspn.vcs.SettingsForm
+import com.rspn.vcs.services.PersistentSettings
 import java.util.regex.PatternSyntaxException
 import javax.swing.JComponent
 

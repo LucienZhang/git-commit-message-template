@@ -1,4 +1,4 @@
-package com.rspn.util
+package com.rspn.vcs.util
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vcs.impl.ProjectLevelVcsManagerImpl

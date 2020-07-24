@@ -1,10 +1,10 @@
-package com.rspn.action
+package com.rspn.vcs.action
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.vcs.CommitMessageI
 import com.intellij.openapi.vcs.ui.Refreshable
-import com.rspn.util.VCSUtils
+import com.rspn.vcs.util.VCSUtils
 
 class SetCommitTemplateAction : DumbAwareAction() {
     init {

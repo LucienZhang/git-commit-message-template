@@ -1,4 +1,4 @@
-package com.rspn;
+package com.rspn.vcs;
 
 import javax.swing.*;
 
