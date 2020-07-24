@@ -1,8 +1,8 @@
 <idea-plugin>
-    <id>com.rspn.vcs</id>
-    <name>VCS Commit Message Template</name>
+    <id>com.rspn.git</id>
+    <name>Git Commit Message Template</name>
     <vendor email="rsperezn593@gmail.com"
-            url="https://bitbucket.org/rsperezn/project-opener/vcs-commit-message-template">
+            url="https://bitbucket.org/rsperezn/project-opener/git-commit-message-template">
         Santiago Perez
     </vendor>
 
@@ -15,7 +15,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.rspn.services.PersistentSettings"/>
         <projectService serviceImplementation="com.rspn.services.ProjectService"/>
-        <applicationConfigurable instance="com.rspn.settings.VCSCommitMessageTemplateSettings"/>
+        <applicationConfigurable instance="com.rspn.settings.GitCommitMessageTemplateSettings"/>
     </extensions>
 
     <projectListeners>
@@ -23,7 +23,7 @@
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </projectListeners>
     <actions>
-        <action id="vcs-commit-message-template.SetCommitMessageAction" class="com.rspn.action.SetCommitTemplateAction"
+        <action id="git-commit-message-template.SetCommitMessageAction" class="com.rspn.action.SetCommitTemplateAction"
                 text="Set Commit Message from Branch"
                 description="Commit message"
                 keymap="$default">

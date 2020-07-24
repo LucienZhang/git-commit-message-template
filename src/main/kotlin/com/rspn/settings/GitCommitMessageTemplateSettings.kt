@@ -6,7 +6,7 @@ import com.rspn.services.PersistentSettings
 import java.util.regex.PatternSyntaxException
 import javax.swing.JComponent
 
-class VCSCommitMessageTemplateSettings : SearchableConfigurable {
+class GitCommitMessageTemplateSettings : SearchableConfigurable {
     private val settingsForm = SettingsForm()
     private val persistentSettings = PersistentSettings.getInstance()
     private val radioButtonMapping = mapOf(0 to settingsForm.ticketAndDescriptionRadioButton,

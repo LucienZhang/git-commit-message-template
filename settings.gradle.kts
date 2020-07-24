@@ -1,1 +1,1 @@
-rootProject.name = "vcs-commit-message-template"
+rootProject.name = "git-commit-message-template"
