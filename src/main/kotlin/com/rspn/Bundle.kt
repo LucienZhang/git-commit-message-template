@@ -1,4 +1,4 @@
-package com.rspn.vcs
+package com.rspn
 
 import com.intellij.AbstractBundle
 import org.jetbrains.annotations.NonNls

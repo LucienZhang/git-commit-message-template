@@ -1,7 +1,7 @@
-package com.rspn.vcs.services
+package com.rspn.services
 
 import com.intellij.openapi.project.Project
-import com.rspn.vcs.Bundle
+import com.rspn.Bundle
 
 class ProjectService(project: Project) {
 

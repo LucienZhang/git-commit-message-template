@@ -1,8 +1,8 @@
-package com.rspn.vcs.listeners
+package com.rspn.listeners
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import com.rspn.vcs.services.ProjectService
+import com.rspn.services.ProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 
