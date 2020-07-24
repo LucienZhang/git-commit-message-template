@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>com.rspn</id>
+    <id>com.rspn.vcs</id>
     <name>VCS Commit Message Template</name>
     <vendor email="rsperezn593@gmail.com"
             url="https://bitbucket.org/rsperezn/project-opener/vcs-commit-message-template">
