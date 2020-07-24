@@ -4,7 +4,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.vcs.impl.ProjectLevelVcsManagerImpl
 import git4idea.branch.GitBranchUtil
 import java.util.regex.Pattern
-import org.zmlx.hg4idea.util.HgUtil
 
 object VCSUtils {
     fun extractBranchName(project: Project): String {
@@ -15,8 +14,6 @@ object VCSUtils {
             if (currentBranch != null) {
                 branch = currentBranch.name.trim()
             }
-        } else if (instance.checkVcsIsActive("Mercurial")) {
-            branch = HgUtil.getCurrentRepository(project)?.currentBranch?.trim()
         }
         return branch ?: ""
     }
