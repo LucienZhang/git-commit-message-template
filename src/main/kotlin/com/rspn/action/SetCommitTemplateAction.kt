@@ -32,5 +32,4 @@ class SetCommitTemplateAction : DumbAwareAction() {
             else -> throw IllegalStateException("Should have a selected radio button")
         }
     }
-
 }
