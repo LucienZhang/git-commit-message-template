@@ -7,7 +7,7 @@ import com.intellij.openapi.components.Storage
 import com.intellij.util.xmlb.XmlSerializerUtil
 import com.rspn.Bundle
 
-@State(name = "git-commit-message-template", storages = [Storage("ti-commit-message-template.xml")])
+@State(name = "git-commit-message-template", storages = [Storage("git-commit-message-template.xml")])
 class PersistentSettings(
     var selectedRadioButtonIndex: Int = 0,
     var suffix: String = Bundle.getMessage("suffix"),

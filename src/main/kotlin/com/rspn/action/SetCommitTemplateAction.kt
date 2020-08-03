@@ -4,6 +4,8 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.vcs.CommitMessageI
 import com.intellij.openapi.vcs.ui.Refreshable
+import com.rspn.Bundle
+import com.rspn.services.PersistentSettings
 import com.rspn.util.GitUtils
 
 class SetCommitTemplateAction : DumbAwareAction() {
@@ -11,17 +13,24 @@ class SetCommitTemplateAction : DumbAwareAction() {
         isEnabledInModalContext = true
     }
 
-    companion object {
-        const val issueIdSeparator = ":" // TODO set as configurable
-    }
-
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project!!
         val data = Refreshable.PANEL_KEY.getData(e.dataContext)
         if (data is CommitMessageI) {
             val branchName = GitUtils.extractBranchName(project)
-            val issueId = GitUtils.parseBranchNameByRegex(branchName = branchName, regexString = "[A-Z0-9]+-[0-9]+")
-            data.setCommitMessage("$issueId$issueIdSeparator")
+            val persistentSettings = PersistentSettings.getInstance()
+            val issueId = GitUtils.parseBranchNameByRegex(branchName = branchName, regexString = getRegexFromRadioButton(persistentSettings))
+            data.setCommitMessage("$issueId${persistentSettings.suffix}")
         }
     }
+
+    private fun getRegexFromRadioButton(persistentSettings: PersistentSettings): String {
+        return when (persistentSettings.selectedRadioButtonIndex) {
+            0 -> Bundle.getMessage("defaultRegex")
+            1 -> Bundle.getMessage("issueTicketRegex")
+            2 -> persistentSettings.customRegex
+            else -> throw IllegalStateException("Should have a selected radio button")
+        }
+    }
+
 }

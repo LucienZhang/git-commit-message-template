@@ -29,6 +29,7 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
         settingsForm.apply {
             radioButtonMapping.getValue(persistentSettings.selectedRadioButtonIndex).isSelected = true
             customRegexTextField.text = persistentSettings.customRegex
+            customRegexTextField.isEnabled = persistentSettings.selectedRadioButtonIndex == 2
             issueSuffixTextField.text = persistentSettings.suffix
             branchNameTextFieldPreview.text = persistentSettings.branchName
         }
@@ -83,7 +84,7 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
 
     override fun getId() = "git-commit-message-template"
 
-    override fun getDisplayName() = "GIT Commit Message Template"
+    override fun getDisplayName() = "Git Commit Message Template"
 
     override fun apply() {
         persistentSettings.customRegex = settingsForm.customRegexTextField.text
