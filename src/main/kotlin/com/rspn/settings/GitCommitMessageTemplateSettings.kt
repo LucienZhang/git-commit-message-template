@@ -81,9 +81,9 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
                 persistentSettings.selectedRadioButtonIndex != getSelectedRadioButtonIndex()
     }
 
-    override fun getId() = "vcs-commit-message-template"
+    override fun getId() = "git-commit-message-template"
 
-    override fun getDisplayName() = "VCS Commit Message Template"
+    override fun getDisplayName() = "GIT Commit Message Template"
 
     override fun apply() {
         persistentSettings.customRegex = settingsForm.customRegexTextField.text

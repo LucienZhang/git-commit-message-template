@@ -4,7 +4,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.vcs.CommitMessageI
 import com.intellij.openapi.vcs.ui.Refreshable
-import com.rspn.util.VCSUtils
+import com.rspn.util.GitUtils
 
 class SetCommitTemplateAction : DumbAwareAction() {
     init {
@@ -19,8 +19,8 @@ class SetCommitTemplateAction : DumbAwareAction() {
         val project = e.project!!
         val data = Refreshable.PANEL_KEY.getData(e.dataContext)
         if (data is CommitMessageI) {
-            val branchName = VCSUtils.extractBranchName(project)
-            val issueId = VCSUtils.parseBranchNameByRegex(branchName = branchName, regexString = "[A-Z0-9]+-[0-9]+")
+            val branchName = GitUtils.extractBranchName(project)
+            val issueId = GitUtils.parseBranchNameByRegex(branchName = branchName, regexString = "[A-Z0-9]+-[0-9]+")
             data.setCommitMessage("$issueId$issueIdSeparator")
         }
     }

@@ -5,7 +5,7 @@ import com.intellij.openapi.vcs.impl.ProjectLevelVcsManagerImpl
 import git4idea.branch.GitBranchUtil
 import java.util.regex.Pattern
 
-object VCSUtils {
+object GitUtils {
     fun extractBranchName(project: Project): String {
         var branch: String? = null
         val instance = ProjectLevelVcsManagerImpl.getInstance(project)
