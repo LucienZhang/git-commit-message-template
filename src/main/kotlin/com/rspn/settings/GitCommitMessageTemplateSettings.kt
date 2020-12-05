@@ -9,8 +9,10 @@ import javax.swing.JComponent
 class GitCommitMessageTemplateSettings : SearchableConfigurable {
     private val settingsForm = SettingsForm()
     private val persistentSettings = PersistentSettings.getInstance()
-    private val radioButtonMapping = mapOf(0 to settingsForm.ticketAndDescriptionRadioButton,
-            1 to settingsForm.prefixTicketAndDescriptionRadioButton, 2 to settingsForm.customRadioButton)
+    private val radioButtonMapping = mapOf(
+        0 to settingsForm.ticketAndDescriptionRadioButton,
+        1 to settingsForm.prefixTicketAndDescriptionRadioButton, 2 to settingsForm.customRadioButton
+    )
 
     companion object {
         const val sampleCommitMessage = "Sample commit message description"
@@ -38,10 +40,12 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
     private fun addRunPreviewButtonAction() {
         settingsForm.runPreviewButton.addActionListener {
             val selectedRegexButton =
-                    setOf(settingsForm.customRadioButton,
-                            settingsForm.ticketAndDescriptionRadioButton,
-                            settingsForm.prefixTicketAndDescriptionRadioButton)
-                            .first { it.isSelected }
+                setOf(
+                    settingsForm.customRadioButton,
+                    settingsForm.ticketAndDescriptionRadioButton,
+                    settingsForm.prefixTicketAndDescriptionRadioButton
+                )
+                    .first { it.isSelected }
             var customRegex: String? = null
             if (selectedRegexButton.actionCommand == "Custom") {
                 customRegex = settingsForm.customRegexTextField.text
@@ -50,10 +54,10 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
             val sampleBranchName = settingsForm.branchNameTextFieldPreview.text
             try {
                 val matchResult = Regex(customRegex ?: selectedRegexButton.actionCommand)
-                        .find(sampleBranchName)
+                    .find(sampleBranchName)
                 val matchedRegexValue = matchResult?.value
                 settingsForm.resultingCommitMessageTemplatePreview.text =
-                        "$matchedRegexValue$suffix$sampleCommitMessage"
+                    "$matchedRegexValue$suffix$sampleCommitMessage"
             } catch (e: PatternSyntaxException) {
                 settingsForm.errorLabel.text = e.message
             }
@@ -68,11 +72,11 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
 
     private fun addDefaultRadioButtonsActions() {
         setOf(settingsForm.prefixTicketAndDescriptionRadioButton, settingsForm.ticketAndDescriptionRadioButton)
-                .forEach {
-                    it.addActionListener {
-                        settingsForm.customRegexTextField.isEnabled = false
-                    }
+            .forEach {
+                it.addActionListener {
+                    settingsForm.customRegexTextField.isEnabled = false
                 }
+            }
     }
 
     override fun isModified(): Boolean {
@@ -104,5 +108,5 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
 }
 
 fun String.getNewLineCharacter(): String {
-    return this.replace("\\n",System.getProperty("line.separator"))
+    return this.replace("\\n", System.getProperty("line.separator"))
 }
