@@ -102,3 +102,7 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
         throw IllegalStateException("Should have found an selected radio button")
     }
 }
+
+fun String.getNewLineCharacter(): String {
+    return this.replace("\\n",System.getProperty("line.separator"))
+}
