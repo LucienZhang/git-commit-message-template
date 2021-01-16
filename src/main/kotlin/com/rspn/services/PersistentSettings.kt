@@ -11,6 +11,7 @@ import com.rspn.Bundle
 class PersistentSettings(
     var selectedRadioButtonIndex: Int = 0,
     var suffix: String = Bundle.getMessage("suffix"),
+    var prefix: String = Bundle.getMessage("prefix"),
     var customRegex: String = Bundle.getMessage("customRegex"),
     var branchName: String = Bundle.getMessage("branchName")
 ) : PersistentStateComponent<PersistentSettings> {

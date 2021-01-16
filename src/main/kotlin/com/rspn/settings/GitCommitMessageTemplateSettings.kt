@@ -11,11 +11,13 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
     private val persistentSettings = PersistentSettings.getInstance()
     private val radioButtonMapping = mapOf(
         0 to settingsForm.ticketAndDescriptionRadioButton,
-        1 to settingsForm.prefixTicketAndDescriptionRadioButton, 2 to settingsForm.customRadioButton
+        1 to settingsForm.prefixTicketAndDescriptionRadioButton,
+        2 to settingsForm.customRadioButton
     )
 
     companion object {
-        const val sampleCommitMessage = "Sample commit message description"
+        private const val sampleCommitMessage = "Sample commit message description"
+        private const val CUSTOM = "Custom"
     }
 
     override fun createComponent(): JComponent? {
@@ -32,6 +34,7 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
             radioButtonMapping.getValue(persistentSettings.selectedRadioButtonIndex).isSelected = true
             customRegexTextField.text = persistentSettings.customRegex
             customRegexTextField.isEnabled = persistentSettings.selectedRadioButtonIndex == 2
+            issuePrefixTextField.text = persistentSettings.prefix
             issueSuffixTextField.text = persistentSettings.suffix
             branchNameTextFieldPreview.text = persistentSettings.branchName
         }
@@ -47,9 +50,10 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
                 )
                     .first { it.isSelected }
             var customRegex: String? = null
-            if (selectedRegexButton.actionCommand == "Custom") {
+            if (selectedRegexButton.actionCommand == CUSTOM ) {
                 customRegex = settingsForm.customRegexTextField.text
             }
+            val prefix = settingsForm.issuePrefixTextField.text
             val suffix = settingsForm.issueSuffixTextField.text
             val sampleBranchName = settingsForm.branchNameTextFieldPreview.text
             try {
@@ -57,7 +61,7 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
                     .find(sampleBranchName)
                 val matchedRegexValue = matchResult?.value
                 settingsForm.resultingCommitMessageTemplatePreview.text =
-                    "$matchedRegexValue$suffix$sampleCommitMessage"
+                    "$prefix$matchedRegexValue$suffix$sampleCommitMessage"
             } catch (e: PatternSyntaxException) {
                 settingsForm.errorLabel.text = e.message
             }
@@ -83,6 +87,7 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
         return persistentSettings.customRegex != settingsForm.customRegexTextField.text ||
                 persistentSettings.branchName != settingsForm.branchNameTextFieldPreview.text ||
                 persistentSettings.suffix != settingsForm.issueSuffixTextField.text ||
+                persistentSettings.prefix != settingsForm.issuePrefixTextField.text ||
                 persistentSettings.selectedRadioButtonIndex != getSelectedRadioButtonIndex()
     }
 
@@ -93,6 +98,7 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
     override fun apply() {
         persistentSettings.customRegex = settingsForm.customRegexTextField.text
         persistentSettings.branchName = settingsForm.branchNameTextFieldPreview.text
+        persistentSettings.prefix = settingsForm.issuePrefixTextField.text
         persistentSettings.suffix = settingsForm.issueSuffixTextField.text
         persistentSettings.selectedRadioButtonIndex = getSelectedRadioButtonIndex()
     }
@@ -107,6 +113,6 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
     }
 }
 
-fun String.getNewLineCharacter(): String {
+fun String.withNewLineCharacter(): String {
     return this.replace("\\n", System.getProperty("line.separator"))
 }

@@ -8,6 +8,7 @@ public class SettingsForm {
     private JRadioButton customRadioButton;
     private JTextField customRegexTextField;
     private JTextField issueSuffixTextField;
+    private JTextField issuePrefixTextField;
     private JTextField branchNameTextFieldPreview;
     private JTextField resultingCommitMessageTemplatePreview;
     private JPanel rootPanel;
@@ -46,6 +47,9 @@ public class SettingsForm {
         return issueSuffixTextField;
     }
 
+    public JTextField getIssuePrefixTextField() {
+        return issuePrefixTextField;
+    }
     public JTextField getBranchNameTextFieldPreview() {
         return branchNameTextFieldPreview;
     }
