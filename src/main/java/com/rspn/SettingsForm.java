@@ -16,6 +16,9 @@ public class SettingsForm {
     private JButton runPreviewButton;
 
     private JLabel errorLabel;
+    private JRadioButton staticComponentsRadioButton;
+    private JRadioButton regexGroupsAndBackreferencesRadioButton;
+    private JTextField textField1;
 
     public JLabel getErrorLabel() {
         return errorLabel;
