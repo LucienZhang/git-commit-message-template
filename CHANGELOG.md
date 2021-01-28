@@ -8,5 +8,5 @@
 Initial release
 ## [1.1]
 Add prefix to template
-## [1.2]
+## [1.3]
 Add back reference and capturing groups feature
