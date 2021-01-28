@@ -57,8 +57,8 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
             radioButtonMappingMessageComponents.getValue(persistentSettings.selectedMessageComponentsRegexRadioButtonIndex).isSelected = true
             issuePrefixTextField.text = persistentSettings.prefix
             issueSuffixTextField.text = persistentSettings.suffix
-            issuePrefixTextField.isEnabled =!regexGroupBackreferenceTextField.isEnabled
-            issueSuffixTextField.isEnabled =!regexGroupBackreferenceTextField.isEnabled
+            issuePrefixTextField.isEnabled = !regexGroupBackreferenceTextField.isEnabled
+            issueSuffixTextField.isEnabled = !regexGroupBackreferenceTextField.isEnabled
             branchNameTextFieldPreview.text = persistentSettings.branchName
         }
     }
@@ -71,7 +71,6 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
                 customRegex = settingsForm.customRegexTextField.text
             }
             val selectedComponentsButton = messageComponentsButtonSet.first { it.isSelected }
-
 
             var customMessageComponents: String? = null
             if (selectedComponentsButton.actionCommand == CUSTOM_COMPONENTS) {
@@ -94,13 +93,11 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
                     }
                     else -> settingsForm.resultingCommitMessageTemplatePreview.text = Pattern.compile(pattern)
                         .matcher(sampleBranchName)
-                        .replaceAll("$customMessageComponents$sampleCommitMessage");
+                        .replaceAll("$customMessageComponents$sampleCommitMessage")
                 }
-
             } catch (e: PatternSyntaxException) {
                 settingsForm.errorLabel.text = e.message
-            }
-            catch (e:IndexOutOfBoundsException){
+            } catch (e: IndexOutOfBoundsException) {
                 settingsForm.errorLabel.text = e.message
             }
         }
@@ -137,8 +134,8 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
                 persistentSettings.branchName != settingsForm.branchNameTextFieldPreview.text ||
                 persistentSettings.suffix != settingsForm.issueSuffixTextField.text ||
                 persistentSettings.prefix != settingsForm.issuePrefixTextField.text ||
-                persistentSettings.selectedBranchRegexRadioButtonIndex != getSelectedRadioButtonIndex(radioButtonBranchRegexMapping)||
-                persistentSettings.selectedMessageComponentsRegexRadioButtonIndex != getSelectedRadioButtonIndex(radioButtonMappingMessageComponents)||
+                persistentSettings.selectedBranchRegexRadioButtonIndex != getSelectedRadioButtonIndex(radioButtonBranchRegexMapping) ||
+                persistentSettings.selectedMessageComponentsRegexRadioButtonIndex != getSelectedRadioButtonIndex(radioButtonMappingMessageComponents) ||
                 persistentSettings.messageComponentsBackreference != settingsForm.regexGroupBackreferenceTextField.text
     }
 
@@ -156,7 +153,7 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
         persistentSettings.messageComponentsBackreference = settingsForm.regexGroupBackreferenceTextField.text
     }
 
-    private fun getSelectedRadioButtonIndex(radioButtonMapping: Map<Int,JRadioButton>): Int {
+    private fun getSelectedRadioButtonIndex(radioButtonMapping: Map<Int, JRadioButton>): Int {
         for (index in 0..radioButtonMapping.entries.size) {
             if (radioButtonMapping.getValue(index).isSelected) {
                 return index
