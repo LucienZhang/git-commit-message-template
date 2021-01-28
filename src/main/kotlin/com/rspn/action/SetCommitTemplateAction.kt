@@ -26,7 +26,7 @@ class SetCommitTemplateAction : DumbAwareAction() {
     }
 
     private fun getRegexFromRadioButton(persistentSettings: PersistentSettings): String {
-        return when (persistentSettings.selectedRadioButtonIndex) {
+        return when (persistentSettings.selectedBranchRegexRadioButtonIndex) {
             0 -> Bundle.getMessage("defaultRegex")
             1 -> Bundle.getMessage("issueTicketRegex")
             2 -> persistentSettings.customRegex

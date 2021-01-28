@@ -18,7 +18,7 @@ public class SettingsForm {
     private JLabel errorLabel;
     private JRadioButton staticComponentsRadioButton;
     private JRadioButton regexGroupsAndBackreferencesRadioButton;
-    private JTextField textField1;
+    private JTextField regexGroupBackreferenceTextField;
 
     public JLabel getErrorLabel() {
         return errorLabel;
@@ -38,7 +38,7 @@ public class SettingsForm {
         return prefixTicketAndDescriptionRadioButton;
     }
 
-    public JRadioButton getCustomRadioButton() {
+    public JRadioButton getBranchRegexCustomRadioButton() {
         return customRadioButton;
     }
 
@@ -67,5 +67,17 @@ public class SettingsForm {
 
     public JPanel getGetRootPanel() {
         return getRootPanel;
+    }
+
+    public JRadioButton getStaticComponentsRadioButton() {
+        return staticComponentsRadioButton;
+    }
+
+    public JRadioButton getRegexGroupsAndBackreferencesRadioButton() {
+        return regexGroupsAndBackreferencesRadioButton;
+    }
+
+    public JTextField getRegexGroupBackreferenceTextField() {
+        return regexGroupBackreferenceTextField;
     }
 }
