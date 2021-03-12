@@ -3,8 +3,7 @@ package com.rspn.settings
 import com.intellij.openapi.options.SearchableConfigurable
 import com.rspn.SettingsForm
 import com.rspn.services.PersistentSettings
-import java.util.regex.Pattern
-import java.util.regex.PatternSyntaxException
+import com.rspn.util.GitUtils
 import javax.swing.JComponent
 import javax.swing.JRadioButton
 
@@ -46,7 +45,8 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
 
     private fun applySavedState() {
         settingsForm.apply {
-            radioButtonBranchRegexMapping.getValue(persistentSettings.selectedBranchRegexRadioButtonIndex).isSelected = true
+            radioButtonBranchRegexMapping.getValue(persistentSettings.selectedBranchRegexRadioButtonIndex).isSelected =
+                true
             customRegexTextField.text = persistentSettings.customRegex
             customRegexTextField.isEnabled =
                 persistentSettings.selectedBranchRegexRadioButtonIndex == radioButtonBranchRegexMapping.entries.first { it.value == settingsForm.branchRegexCustomRadioButton }.key
@@ -54,7 +54,8 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
             regexGroupBackreferenceTextField.text = persistentSettings.messageComponentsBackreference
             regexGroupBackreferenceTextField.isEnabled =
                 persistentSettings.selectedMessageComponentsRegexRadioButtonIndex == radioButtonMappingMessageComponents.entries.first { it.value == settingsForm.regexGroupsAndBackreferencesRadioButton }.key
-            radioButtonMappingMessageComponents.getValue(persistentSettings.selectedMessageComponentsRegexRadioButtonIndex).isSelected = true
+            radioButtonMappingMessageComponents.getValue(persistentSettings.selectedMessageComponentsRegexRadioButtonIndex).isSelected =
+                true
             issuePrefixTextField.text = persistentSettings.prefix
             issueSuffixTextField.text = persistentSettings.suffix
             issuePrefixTextField.isEnabled = !regexGroupBackreferenceTextField.isEnabled
@@ -78,26 +79,16 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
             }
 
             settingsForm.errorLabel.text = ""
-            val prefix = settingsForm.issuePrefixTextField.text
-            val suffix = settingsForm.issueSuffixTextField.text
-            val sampleBranchName = settingsForm.branchNameTextFieldPreview.text
             try {
-                val pattern = customRegex ?: selectedRegexButton.actionCommand
-                val matchResult = Regex(pattern)
-                    .find(sampleBranchName)
-                val matchedRegexValue = matchResult?.value
-                when (customMessageComponents) {
-                    null -> {
-                        settingsForm.resultingCommitMessageTemplatePreview.text =
-                            "$prefix$matchedRegexValue$suffix$sampleCommitMessage"
-                    }
-                    else -> settingsForm.resultingCommitMessageTemplatePreview.text = Pattern.compile(pattern)
-                        .matcher(sampleBranchName)
-                        .replaceAll("$customMessageComponents$sampleCommitMessage")
-                }
-            } catch (e: PatternSyntaxException) {
-                settingsForm.errorLabel.text = e.message
-            } catch (e: IndexOutOfBoundsException) {
+                settingsForm.resultingCommitMessageTemplatePreview.text= GitUtils.parseAndBuildMessage(
+                    prefix = settingsForm.issuePrefixTextField.text,
+                    suffix = settingsForm.issueSuffixTextField.text,
+                    branchName = settingsForm.branchNameTextFieldPreview.text,
+                    regexPattern = customRegex ?: selectedRegexButton.actionCommand,
+                    sampleCommitMessage = sampleCommitMessage,
+                    customMessageComponents = customMessageComponents
+                )
+            } catch (e: Exception) {
                 settingsForm.errorLabel.text = e.message
             }
         }
@@ -134,8 +125,12 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
                 persistentSettings.branchName != settingsForm.branchNameTextFieldPreview.text ||
                 persistentSettings.suffix != settingsForm.issueSuffixTextField.text ||
                 persistentSettings.prefix != settingsForm.issuePrefixTextField.text ||
-                persistentSettings.selectedBranchRegexRadioButtonIndex != getSelectedRadioButtonIndex(radioButtonBranchRegexMapping) ||
-                persistentSettings.selectedMessageComponentsRegexRadioButtonIndex != getSelectedRadioButtonIndex(radioButtonMappingMessageComponents) ||
+                persistentSettings.selectedBranchRegexRadioButtonIndex != getSelectedRadioButtonIndex(
+            radioButtonBranchRegexMapping
+        ) ||
+                persistentSettings.selectedMessageComponentsRegexRadioButtonIndex != getSelectedRadioButtonIndex(
+            radioButtonMappingMessageComponents
+        ) ||
                 persistentSettings.messageComponentsBackreference != settingsForm.regexGroupBackreferenceTextField.text
     }
 
@@ -148,8 +143,10 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
         persistentSettings.branchName = settingsForm.branchNameTextFieldPreview.text
         persistentSettings.prefix = settingsForm.issuePrefixTextField.text
         persistentSettings.suffix = settingsForm.issueSuffixTextField.text
-        persistentSettings.selectedBranchRegexRadioButtonIndex = getSelectedRadioButtonIndex(radioButtonBranchRegexMapping)
-        persistentSettings.selectedMessageComponentsRegexRadioButtonIndex = getSelectedRadioButtonIndex(radioButtonMappingMessageComponents)
+        persistentSettings.selectedBranchRegexRadioButtonIndex =
+            getSelectedRadioButtonIndex(radioButtonBranchRegexMapping)
+        persistentSettings.selectedMessageComponentsRegexRadioButtonIndex =
+            getSelectedRadioButtonIndex(radioButtonMappingMessageComponents)
         persistentSettings.messageComponentsBackreference = settingsForm.regexGroupBackreferenceTextField.text
     }
 

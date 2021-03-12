@@ -20,8 +20,19 @@ class SetCommitTemplateAction : DumbAwareAction() {
         if (data is CommitMessageI) {
             val branchName = GitUtils.extractBranchName(project)
             val persistentSettings = PersistentSettings.getInstance()
-            val regexCapturedValue = GitUtils.parseBranchNameByRegex(branchName = branchName, regexString = getRegexFromRadioButton(persistentSettings))
-            data.setCommitMessage("${persistentSettings.prefix.withNewLineCharacter()}$regexCapturedValue${persistentSettings.suffix.withNewLineCharacter()}")
+            try {
+                data.setCommitMessage(
+                    GitUtils.parseAndBuildMessage(
+                        prefix = persistentSettings.prefix.withNewLineCharacter(),
+                        suffix = persistentSettings.suffix.withNewLineCharacter(),
+                        regexPattern = getRegexFromRadioButton(persistentSettings),
+                        branchName = branchName,
+                        customMessageComponents = getCustomMessageComponents(persistentSettings)
+                    )
+                )
+            } catch (e: Exception) {
+                throw e
+            }
         }
     }
 
@@ -31,6 +42,14 @@ class SetCommitTemplateAction : DumbAwareAction() {
             1 -> Bundle.getMessage("issueTicketRegex")
             2 -> persistentSettings.customRegex
             else -> throw IllegalStateException("Should have a selected radio button")
+        }
+    }
+
+    private fun getCustomMessageComponents(persistentSettings: PersistentSettings): String? {
+        return when (persistentSettings.selectedMessageComponentsRegexRadioButtonIndex) {
+            0 -> null
+            1 -> persistentSettings.messageComponentsBackreference
+            else -> throw IllegalStateException("Unknown selected field, it should either be static or backreference index")
         }
     }
 }

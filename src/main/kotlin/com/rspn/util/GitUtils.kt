@@ -18,16 +18,28 @@ object GitUtils {
         return branch ?: ""
     }
 
-    fun parseBranchNameByRegex(branchName: String, regexString: String): String {
-        val pattern = Pattern.compile(regexString)
-        val matcher = pattern.matcher(branchName)
-        val sb = StringBuilder()
-        while (matcher.find()) {
-            sb.append(matcher.group() + " ")
+    fun parseAndBuildMessage(
+        prefix: String,
+        suffix: String,
+        regexPattern: String,
+        branchName: String,
+        sampleCommitMessage: String = "",
+        customMessageComponents: String?
+    ): String {
+        try {
+            val matchResult = Regex(regexPattern)
+                .find(branchName)
+            val matchedRegexValue = matchResult?.value
+            return when (customMessageComponents) {
+                null -> {
+                    "$prefix$matchedRegexValue$suffix${sampleCommitMessage}"
+                }
+                else -> Pattern.compile(regexPattern)
+                    .matcher(branchName)
+                    .replaceAll("$customMessageComponents${sampleCommitMessage}")
+            }
+        } catch (e: Exception) {
+            throw e
         }
-        if (sb.isNotEmpty()) {
-            return sb.toString().trim { it <= ' ' }
-        }
-        return branchName
     }
 }
