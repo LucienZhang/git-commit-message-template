@@ -10,3 +10,5 @@ Initial release
 Add prefix to template
 ## [1.3]
 Add back reference and capturing groups feature
+## [1.4]
+Bug fix when running custom regex back reference components
