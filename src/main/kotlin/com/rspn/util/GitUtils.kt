@@ -32,11 +32,12 @@ object GitUtils {
             val matchedRegexValue = matchResult?.value
             return when (customMessageComponents) {
                 null -> {
-                    "$prefix$matchedRegexValue$suffix${sampleCommitMessage}"
+                    "$prefix$matchedRegexValue$suffix$sampleCommitMessage"
                 }
-                else -> Pattern.compile(regexPattern)
-                    .matcher(branchName)
-                    .replaceAll("$customMessageComponents${sampleCommitMessage}")
+                else ->
+                    Pattern.compile(regexPattern)
+                        .matcher(branchName)
+                        .replaceAll("$customMessageComponents$sampleCommitMessage")
             }
         } catch (e: Exception) {
             throw e

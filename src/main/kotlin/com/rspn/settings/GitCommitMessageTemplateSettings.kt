@@ -80,7 +80,7 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
 
             settingsForm.errorLabel.text = ""
             try {
-                settingsForm.resultingCommitMessageTemplatePreview.text= GitUtils.parseAndBuildMessage(
+                settingsForm.resultingCommitMessageTemplatePreview.text = GitUtils.parseAndBuildMessage(
                     prefix = settingsForm.issuePrefixTextField.text,
                     suffix = settingsForm.issueSuffixTextField.text,
                     branchName = settingsForm.branchNameTextFieldPreview.text,
@@ -122,16 +122,16 @@ class GitCommitMessageTemplateSettings : SearchableConfigurable {
 
     override fun isModified(): Boolean {
         return persistentSettings.customRegex != settingsForm.customRegexTextField.text ||
-                persistentSettings.branchName != settingsForm.branchNameTextFieldPreview.text ||
-                persistentSettings.suffix != settingsForm.issueSuffixTextField.text ||
-                persistentSettings.prefix != settingsForm.issuePrefixTextField.text ||
-                persistentSettings.selectedBranchRegexRadioButtonIndex != getSelectedRadioButtonIndex(
+            persistentSettings.branchName != settingsForm.branchNameTextFieldPreview.text ||
+            persistentSettings.suffix != settingsForm.issueSuffixTextField.text ||
+            persistentSettings.prefix != settingsForm.issuePrefixTextField.text ||
+            persistentSettings.selectedBranchRegexRadioButtonIndex != getSelectedRadioButtonIndex(
             radioButtonBranchRegexMapping
         ) ||
-                persistentSettings.selectedMessageComponentsRegexRadioButtonIndex != getSelectedRadioButtonIndex(
+            persistentSettings.selectedMessageComponentsRegexRadioButtonIndex != getSelectedRadioButtonIndex(
             radioButtonMappingMessageComponents
         ) ||
-                persistentSettings.messageComponentsBackreference != settingsForm.regexGroupBackreferenceTextField.text
+            persistentSettings.messageComponentsBackreference != settingsForm.regexGroupBackreferenceTextField.text
     }
 
     override fun getId() = "git-commit-message-template"
