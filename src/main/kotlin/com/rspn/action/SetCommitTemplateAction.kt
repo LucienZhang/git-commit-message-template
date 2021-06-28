@@ -1,6 +1,8 @@
 package com.rspn.action
 
 import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.editor.VisualPosition
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.vcs.CommitMessageI
 import com.intellij.openapi.vcs.ui.Refreshable
@@ -21,15 +23,19 @@ class SetCommitTemplateAction : DumbAwareAction() {
             val branchName = GitUtils.extractBranchName(project)
             val persistentSettings = PersistentSettings.getInstance()
             try {
-                data.setCommitMessage(
-                    GitUtils.parseAndBuildMessage(
+                val message = GitUtils.parseAndBuildMessage(
                         prefix = persistentSettings.prefix.withNewLineCharacter(),
                         suffix = persistentSettings.suffix.withNewLineCharacter(),
                         regexPattern = getRegexFromRadioButton(persistentSettings),
                         branchName = branchName,
                         customMessageComponents = getCustomMessageComponents(persistentSettings)
-                    )
                 )
+                data.setCommitMessage(message)
+                e.getData(CommonDataKeys.EDITOR)!!.caretModel.currentCaret
+                        .run { setSelection(0, 0)
+                            moveToVisualPosition(VisualPosition(1, message.length.minus(1)))
+                        }
+
             } catch (e: Exception) {
                 throw e
             }

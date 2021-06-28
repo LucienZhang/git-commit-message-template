@@ -12,3 +12,5 @@ Add prefix to template
 Add back reference and capturing groups feature
 ## [1.4]
 Bug fix when running custom regex back reference components
+## [1.6]
+Unselect message template and move caret to end of line
