@@ -33,9 +33,8 @@ class SetCommitTemplateAction : DumbAwareAction() {
                 data.setCommitMessage(message)
                 e.getData(CommonDataKeys.EDITOR)!!.caretModel.currentCaret
                         .run { setSelection(0, 0)
-                            moveToVisualPosition(VisualPosition(1, message.length.minus(1)))
+                            moveToVisualPosition(VisualPosition(1, message.length))
                         }
-
             } catch (e: Exception) {
                 throw e
             }
