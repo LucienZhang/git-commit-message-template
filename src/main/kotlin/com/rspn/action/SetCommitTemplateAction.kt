@@ -31,10 +31,12 @@ class SetCommitTemplateAction : DumbAwareAction() {
                         customMessageComponents = getCustomMessageComponents(persistentSettings)
                 )
                 data.setCommitMessage(message)
-                e.getData(CommonDataKeys.EDITOR)!!.caretModel.currentCaret
-                        .run { setSelection(0, 0)
-                            moveToVisualPosition(VisualPosition(1, message.length))
-                        }
+                e.getData(CommonDataKeys.EDITOR)?.caretModel?.currentCaret?.let { caret->
+                    caret.run {
+                        setSelection(0, 0)
+                        moveToVisualPosition(VisualPosition(1, message.length))
+                    }
+                }
             } catch (e: Exception) {
                 throw e
             }
