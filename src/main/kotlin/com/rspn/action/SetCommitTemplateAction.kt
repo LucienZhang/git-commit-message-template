@@ -28,7 +28,7 @@ class SetCommitTemplateAction : DumbAwareAction() {
                         suffix = persistentSettings.suffix.withNewLineCharacter(),
                         regexPattern = getRegexFromRadioButton(persistentSettings),
                         branchName = branchName,
-                        customMessageComponents = getCustomMessageComponents(persistentSettings)
+                        customMessageComponents = getCustomMessageComponents(persistentSettings)?.withNewLineCharacter()
                 )
                 data.setCommitMessage(message)
                 e.getData(CommonDataKeys.EDITOR)?.caretModel?.currentCaret?.let { caret ->

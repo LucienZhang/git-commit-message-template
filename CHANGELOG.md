@@ -14,3 +14,5 @@ Add back reference and capturing groups feature
 Bug fix when running custom regex back reference components
 ## [1.6]
 Unselect message template and move caret to end of line
+## [1.9]
+New line is maintained for custom regexes group selection
